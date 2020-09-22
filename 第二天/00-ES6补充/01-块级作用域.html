@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击一下</button>
+    <button>点击一下</button>
+    <button>点击一下</button>
+    <button>点击一下</button>
+    <script>
+        // ES5中的var是没有块级作用域的(if/for)
+        // ES6中的let是有块级作用域的(if/for)
+
+        // ES5之前因为if和for都没有块级作用域的概念，所以在很多时候，我们都必须借用域function
+        // 的作用域来解决应用外面变量的问题。
+
+        // ES6中，加入了let，let它是有if和for的块级作用域。
+
+        // 1.变量作用域：变量在什么范围内是可用
+        {
+            var name = 'why';
+            console.log(name);
+        }
+        console.log(name);
+
+        // 2.没有块级作用域引起的问题：if的块级
+        // 如果别人调用你的函数之前或之后定义了一个变量和函数里的变量名字一样
+        // 那么就会出现覆盖的问题
+        var func;
+        if(true){
+            var name = 'name';
+            func = function(){
+                console.log(name);
+            }
+        }
+        // 如果别人调用你的函数之前或之后定义了一个变量和函数里的变量名字一样
+        // 那么就会出现覆盖的问题
+        var name = 'why';
+        func();
+
+        // 3.没有块级作用域引起的问题：for的块级
+        var btns = document.getElementsByTagName('button');
+        // 每次打印都是调用的都是同一个i
+        for(var i = 0; i < btns.length; i++){
+            btns[i].addEventListener('click',function(){
+                console.log("原始var：第"+i+"个按钮被点击");
+            })
+        }
+
+        // 使用闭包让每个i变的独立
+        for(var i = 0; i < btns.length; i++){
+            (function a(i){
+                btns[i].addEventListener('click',function(){
+                    console.log("使用闭包：第"+i+"个按钮被点击");
+                })
+            })
+            (i)
+        }
+
+        // 使用ES6的let让每个i变的独立
+        for(let i = 0; i < btns.length; i++){
+            btns[i].addEventListener('click',function(){
+                console.log("使用ES6的let：第"+i+"个按钮被点击");
+            })
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象的正常写法
+        const obj1 = {
+            name: "新手1",
+            age: 18,
+            test: function(){
+                console.log("测试");
+            }
+        }
+        
+        var name = "新手2";
+        var age = 18;
+        var test = function(){
+            console.log("测试");
+            console.log("测试");
+        }
+
+        // ES5的增强写法
+        var obj2 = {
+            name: name,
+            age: age,
+            test: test
+        }
+        obj2.test();
+
+        // ES6的增强写法
+        const obj3 = {
+            name,
+            age,
+            test,
+            test2(){
+                console.log("测试2");
+            }
+        }
+        console.log(obj3);
+        obj3.test();
+        obj3.test2();
+        
+    </script>
+</body>
+</html>
