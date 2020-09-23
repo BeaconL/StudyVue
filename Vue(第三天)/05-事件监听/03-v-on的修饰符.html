@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app" @click="divClick">
+    <h2>{{message}}</h2>
+    <!-- .stop 阻止事件冒泡 -->
+    <button @click.stop="btnClick">按钮</button>
+    <!-- .prevent 阻止默认事件，比如表单提交 -->
+    <form action="baidu">
+      <button  @click.prevent="formClick">表单提交</button>
+    </form>
+    <!-- keyup 监听所有键帽回弹 -->
+    <input type="text" @keyup="keyUp">
+    <!-- keyup.enter 监听回车 -->
+    <input type="text" @keyup.enter="keyUp">
+
+    <button @click.once="onceClick" @click.stop>一次有用</button>
+  </div>
+  
+  
+
+  
+  <script src="../JS/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message:'天气真好'
+      },
+      methods: {
+        btnClick(){
+          console.log("button");
+        },
+        divClick(){
+          console.log("div");
+        },
+        formClick(){
+          console.log("form");
+        },
+        keyUp(){
+          console.log("key");
+        },
+        onceClick(){
+          console.log("一次有用");
+        }
+      }
+    })
+  </script>
+</body>
+</html>

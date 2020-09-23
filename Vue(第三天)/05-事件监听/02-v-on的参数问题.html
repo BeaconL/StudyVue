@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- 如果没有参数可以不写() -->
+    <button v-on:click="test1">按钮</button>
+    <button v-on:click="test1()">按钮</button>
+    <br>
+    <!-- 如果有参数没写会传鼠标事件对象过去 -->
+    <!-- 如果没写括号就会传MouseEvent对象 -->
+    <!-- 如果写了括号就会传undefined -->
+    <button @click="test2()">按钮</button>
+    <button @click="test2">按钮</button>
+    <button @click="test2(message)">按钮</button>
+    <br>
+    <!-- 如果有两个参数，两个我都不穿参数过去 -->
+    <!-- 如果没括号的话，前面一个参数是MouseEvent对象后面一个是undefined -->
+    <!-- 如果有括号的话，都是undefined -->
+    <!-- 如果有括号的话，传一个参数，后面一个就是undefined -->
+    <button @click="test3">按钮</button>
+    <button @click="test3()">按钮</button>
+    <button @click="test3(message)">按钮</button>
+    <br>
+    <!-- 如果需要主动传MouseEvent对象 -->
+    <button @click="test2($event)">按钮</button>
+  </div>
+  <script src="../JS/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message:'天气真好'
+      },
+      methods: {
+        test1(){
+          console.log(this.message);
+        },
+        test2(event){
+          console.log(event);
+        },
+        test3(name,age){
+          console.log(name,age);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

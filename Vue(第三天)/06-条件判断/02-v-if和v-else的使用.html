@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- v-else 元素必须紧跟在带 v-if 或者 v-else-if 的元素的后面，否则它将不会被识别。-->
+  <div id="app">
+    <h2 v-if="isFlag">{{message}}</h2>
+    <h2 v-else="isFlag">当isFlag为false的时候显示我</h2>
+  </div>
+  <script src="../JS/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message:'天气真好',
+        isFlag: true
+      }
+    })
+  </script>
+</body>
+</html>
