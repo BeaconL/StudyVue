@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 如果input框输入内容，再切换类型，输入的内容不会消失 -->
+  <!-- 原因是切换的时候不会创建新的label和input，只是在之前的基础上更改了属性名称 -->
+  <!-- 解决方法使用key属性 -->
+  <div id="app">
+    <span v-if="isFlag">
+      <label for="user">用户账号</label>
+      <input name="user" type="text" key="user">
+    </span>
+    <span v-else>
+      <label for="email">用户邮箱</label>
+      <input name="email" type="text" key="email">
+    </span>
+    <button @click="isFlag = !isFlag">切换类型</button>
+  </div>
+  <script src="../JS/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isFlag: true
+      }
+    })
+  </script>
+</body>
+</html>

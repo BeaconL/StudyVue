@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn :number1="num1" :number2="num2"
+    @set-num1="setnum3" @setnum2="setnum2"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>{{number1}}</h2>
+      <input type="text"  @input="numInput1">
+      <h2>{{number2}}</h2>
+      <input type="text" :value="number1" @input="numInput2">
+
+    </div>
+  </template>
+
+  <script src="../JS/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        num1: 0,
+        num2: 1
+      },
+      methods: {
+        setnum3(value){
+          this.num1 = parseInt(value)
+          console.log(value);
+        },
+        setnum2(value){
+          this.num2 = value
+        }
+      },
+      components: {
+        cpn:{
+          template: '#cpn',
+          props: {
+            number1: Number,
+            number2: Number
+          },
+          data(){
+            return{
+              n1: this.number1,
+              n2: this.number2
+            }
+          },
+          methods: {
+            numInput1(event){
+              //this.n1 = event.target.value
+              //this.number1 = event.target.value
+              this.$emit("set-num1",event.target.value)
+            },
+            numInput2(event){
+              this.n2 = event.target.value
+              this.$emit("setnum2",this.n2)
+            }
+          },
+        }
+      },
+      
+    })
+  </script>
+</body>
+</html>

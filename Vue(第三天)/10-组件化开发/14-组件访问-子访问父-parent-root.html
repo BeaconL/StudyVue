@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>我是子组件</h2>
+      <ccpn></ccpn>
+    </div>
+  </template>
+
+  <template id="ccpn">
+    <div>
+      <h2>我是子组件的子组件</h2>
+      <button @click="btnClick">按钮</button>
+    </div>
+  </template>
+
+  <script src="../JS/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message:'天气真好'
+      },
+      components: {
+        cpn: {
+          template: "#cpn",
+          components: {
+            ccpn: {
+              template: '#ccpn',
+              methods: {
+              btnClick(){
+                // 1.$parent寻找上一级组件
+                console.log(this.$parent);
+
+                // 2.$root寻找最上级组件
+                console.log(this.$root);
+              }
+            },
+            },
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

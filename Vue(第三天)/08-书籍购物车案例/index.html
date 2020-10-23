@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+</div>
+<script src="../JS/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message:'天气真好'
+    }
+  })
+  let nums = [100,10,55,66,33];
+
+  let n = nums.reduce((pre,n) => pre = n+pre,100);
+  console.log(n);
+</script>  <script src="main.js"></script>
+  
+</body>
+</html>
