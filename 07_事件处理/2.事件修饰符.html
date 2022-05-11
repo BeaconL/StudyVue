@@ -21,6 +21,10 @@
 				padding: 5px;
 				background-color: orange;
 			}
+			.box3{
+				padding: 5px;
+				background-color: blue;
+			}
 			.list{
 				width: 200px;
 				height: 200px;
@@ -59,10 +63,13 @@
 			<button @click.once="showInfo">点我提示信息</button>
 
 			<!-- 使用事件的捕获模式 -->
-			<div class="box1" @click.capture="showMsg(1)">
+			<div class="box1" @click="showMsg(1)">
 				div1
-				<div class="box2" @click="showMsg(2)">
+				<div class="box2" @click.capture="showMsg(2)">
 					div2
+					<div class="box3" @click="showMsg(3)">
+						div3
+					</div>
 				</div>
 			</div>
 
